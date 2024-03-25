@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""
-This module contains a script that fetches a URL.
-"""
+"""Fetches http://0.0.0.0:5050/status."""
 import urllib.request
 
 if __name__ == "__main__":
