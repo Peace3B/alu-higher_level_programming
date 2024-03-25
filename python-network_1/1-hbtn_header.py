@@ -13,8 +13,11 @@ if __name__ == "__main__":
         req = urllib.request.Request(url)
         
         with urllib.request.urlopen(req) as response:
-            # Retrieve the headers and convert them to a dictionary
-            headers = dict(response.info())
+            # Retrieve the X-Request-Id header
+            x_request_id = response.getheader('X-Request-Id')
 
-            # Print the `X-Request-Id` from the headers if present
-            print(headers.get("X-Request-Id"))
+            # If the X-Request-Id header is present, print its value
+            if x_request_id:
+                print(x_request_id)
+            else:
+                print("No X-Request-Id header found.")
