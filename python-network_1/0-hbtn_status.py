@@ -1,18 +1,13 @@
 #!/usr/bin/python3
-"""Documented by Lsblack"""
+"""
+A Python script that takes in a URL, sends a request and displays
+the value of the X-Request-Id variable found in the header
+"""
 import urllib.request
+import sys
 
-url = 'https://0.0.0.0:5050/status'
-headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'
-    '\n    AppleWebKit/537.36 (KHTML, like Gecko)'
-    '\n    Chrome/99.0.4844.84 Safari/537.36',
-}
 
-req = urllib.request.Request(url, headers=headers)
-with urllib.request.urlopen(req) as response:
-    content = response.read()
-    print("Body response:")
-    print("\t- type:", type(content))
-    print("\t- content:", content)
-    print("\t- utf8 content:", content.decode("utf-8"))
+if __name__ == "__main__":
+    with urllib.request.urlopen(sys.argv[1]) as response:
+        html = response.info()
+        print(html.get('X-Request-Id'))
